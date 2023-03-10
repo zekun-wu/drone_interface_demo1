@@ -1,0 +1,23 @@
+.video-container {
+    position: relative;
+  }
+  
+  /* .video-container video {
+    width: 100%;
+  } */
+  
+  .overlay-text-1 {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: black;
+    padding: 0px;
+  }
+  
+  .overlay-text-bv {
+    position: absolute;
+    bottom:290px;
+    left: 0;
+    color: black;
+    padding: 0px;
+  }
