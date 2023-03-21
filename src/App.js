@@ -1,52 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import DroneDashBoard from './components/DroneDashBoard';
-import DroneScreen from './components/DroneScreen';
-import axios from 'axios';
+import React, { useState } from 'react';
+import DroneMonitor from './components/DroneMonitor';
+import './App.css';
 
-const App = () => {
-  const [droneStats, setDroneStats] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+function App() {
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('data/data.json');
-        const jsonData = await response.json();
-        setDroneStats(jsonData);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
+  const [currentScene, setCurrentScene] = useState(1);
+
+  console.log(currentScene)
+
+  const handleNextScene = () => {
+    setCurrentScene((prevScene) => prevScene + 1);
+  };
+
+  const handlePrevScene = () => {
+    if (currentScene > 1) {
+      setCurrentScene((prevScene) => prevScene - 1);
     }
-    fetchData();
-  }, []);
-
-  // console.log(droneStats)
+  };  
 
   return (
-    // <div>
-    //   {data ? (
-    //     <div className="flex">
-    //       {/* <DroneDashBoard data={data} /> */}
-    //       <DroneScreen/>
-    //     </div>
-    //   ) : (
-    //     <p>Loading...</p>
-    //   )}
-    // </div>
-    <div style={{ position:'relative',display: 'flex', height: '100vh' }}>
-      <div style={{ flex: 1, padding: '1rem' }}>
-      {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <DroneDashBoard droneStats={droneStats} />
-        )}
-      </div> 
-      <div style={{ position: 'relative', flex: 1 }}>
-        <DroneScreen/>
+    <div className="App">
+      <div className="app_container">
+        <DroneMonitor currentScene={currentScene} />
+        <div className="button-container">
+          <button onClick={handlePrevScene}>Previous Scene</button>
+          <button onClick={handleNextScene}>Next Scene</button>
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default App;
