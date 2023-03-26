@@ -97,7 +97,7 @@ const DroneBlock = ({ droneData, video }) => {
               }
             }
             else if(iconKey=='altitude'){
-              return { value: (-1 * latestData[iconKey] * 100).toFixed(0) * 100 + 'm', highlight: false };
+              return { value: (-1 * latestData[iconKey] * 100).toFixed(0)  + 'm', highlight: false };
             }
             else if(iconKey=='distance'){
               return { value: latestData[iconKey].toFixed(0) + 'm', highlight: false };
