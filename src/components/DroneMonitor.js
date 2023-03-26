@@ -6,7 +6,6 @@ const DroneMonitor = ({currentScene}) => {
 
   const [droneData, setDroneData] = useState({});
 
-  console.log(currentScene)
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/data/scene${currentScene}/data.json`)
