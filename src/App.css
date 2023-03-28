@@ -45,6 +45,20 @@
   margin: 20px;
   display: flex;
   align-items: center;
+  z-index: 2;
+  margin-top: 40px;
+}
+
+h2 {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  color: black; 
 }
 
 .button-container button:not(:last-child) {
