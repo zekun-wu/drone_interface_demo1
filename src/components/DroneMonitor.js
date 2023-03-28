@@ -28,7 +28,7 @@ const DroneMonitor = ({currentScene}) => {
   return (
     <div className="container">
       {droneBlocks.map((_, index) => (
-        <DroneBlock key={index} droneData={droneData[String(index + 1)]} video={droneVideos[index]} />
+        <DroneBlock key={index} droneData={droneData[String(index + 1)]} video={droneVideos[index]} droneNumber={index + 1}/>
       ))}
     </div>
   );

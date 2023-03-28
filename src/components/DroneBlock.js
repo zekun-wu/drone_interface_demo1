@@ -17,7 +17,7 @@ import batteryIcon from './icons/battery.png';
 import altitudeIcon from './icons/altitude.png';
 import distanceIcon from './icons/distance.png';
 
-const DroneBlock = ({ droneData, video }) => {
+const DroneBlock = ({ droneData, video, droneNumber }) => {
     const [latestData, setLatestData] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
     // const [videoDuration, setVideoDuration] = useState(null);
@@ -155,7 +155,6 @@ const DroneBlock = ({ droneData, video }) => {
   
     return (
         <div className="drone-block">
-          <div className="icon-container">
             <div className="top-row-icons">
               {icons.slice(0, 6).map((iconData, index) => (
                 <div key={index} className="icon-wrapper">
@@ -193,9 +192,9 @@ const DroneBlock = ({ droneData, video }) => {
                 <span className="icon-text">{getIconValue(iconData.name).value}</span>
               </div>
               ))}
-            </div>
           </div>
           <div className="camera-view">
+            <div className="camera-view-text">{`Drone ${droneNumber}`}</div>
             <video className="video" src={video} autoPlay muted />
           </div>
         </div>

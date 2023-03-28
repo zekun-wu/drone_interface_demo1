@@ -40,12 +40,14 @@
 
 .button-container {
   position: absolute;
-  top: 750px;
-  right:100px;
-  gap: 20px;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+  display: flex;
+  align-items: center;
 }
 
-button:first-child {
+.button-container button:not(:last-child) {
   margin-right: 20px;
 }
 
