@@ -19,15 +19,12 @@ import distanceIcon from './icons/distance.png';
 
 const DroneBlock = ({ droneData, video, droneNumber,highlight }) => {
 
-    console.log(droneData)
-
 
     const [latestData, setLatestData] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
   
     useEffect(() => {
       if (droneData && droneData.timestamps && droneData.timestamps.length > 0) {
-        console.log('droneData.timestamps.length',droneData.timestamps.length)
         const timer = setInterval(() => {
           setCurrentIndex((prevIndex) => {
             if (prevIndex + 1 >= droneData.timestamps.length) {
@@ -105,9 +102,9 @@ const DroneBlock = ({ droneData, video, droneNumber,highlight }) => {
       const getHighlightStyle = (iconKey) => {
         switch (highlight) {
           case 1:
-            return iconKey === 'weather' && latestData[iconKey] !== 4? null : 1; // Red border for all icons except weather
+            return iconKey === 'weather' && latestData[iconKey] !== 4? false: 1; // Red border for all icons except weather
           case 2:
-            return iconKey === 'weather' && latestData[iconKey] !== 4 ? null : 2; // Yellow background for all icons except weather
+            return iconKey === 'weather' && latestData[iconKey] !== 4 ? false : 2; // Yellow background for all icons except weather
           default:
             return false;
         }
@@ -115,7 +112,7 @@ const DroneBlock = ({ droneData, video, droneNumber,highlight }) => {
   
     const icons = [
       { name: 'rotor', icon: rotorIcon },
-      { name: 'camera', icon: cameraIcon },
+      // { name: 'camera', icon: cameraIcon },
       {
         name: 'weather',
         icon: weatherIcon, // Keep the original icon as fallback
@@ -134,7 +131,7 @@ const DroneBlock = ({ droneData, video, droneNumber,highlight }) => {
           }
         },
       },
-      { name: 'wind', icon: windIcon },
+      // { name: 'wind', icon: windIcon },
       { name: 'landing', icon: landingIcon },
       { name: 'warning', icon: warningIcon },
       { name: 'speed', icon: speedIcon },
@@ -145,49 +142,49 @@ const DroneBlock = ({ droneData, video, droneNumber,highlight }) => {
   
     return (
       <div className="drone-block">
-        <div className="top-row-icons">
-          {icons.slice(0, 6).map((iconData, index) => (
-            <div key={index} className="icon-wrapper">
-              <div
-                className="icon"
-                title={`${iconData.name}: ${latestData[iconData.name] || 0}`}
-                style={{
-                  backgroundImage: `url(${
-                    iconData.getIcon
-                      ? iconData.getIcon(latestData[iconData.name])
-                      : iconData.icon
-                  })`,
-                  border: getIconValue(iconData.name).highlight===1 ? '2px solid red' : 'none',
-                  backgroundColor: getIconValue(iconData.name).highlight === 2 ? 'yellow' : 'none',
-                }}
-              ></div>
-              <span className="icon-text">{getIconValue(iconData.name).value}</span>
-            </div>
-          ))}
-        </div>
-        <div className="left-column-icons">
-          {icons.slice(6).map((iconData, index) => (
-            <div key={index} className="icon-wrapper">
-              <div
-                className="icon"
-                title={`${iconData.name}: ${latestData[iconData.name] || 0}`}
-                style={{
-                  backgroundImage: `url(${
-                    iconData.getIcon
-                      ? iconData.getIcon(latestData[iconData.name])
-                      : iconData.icon
-                  })`,
-                  border: getIconValue(iconData.name).highlight===1 ? '2px solid red' : 'none',
-                  backgroundColor: getIconValue(iconData.name).highlight === 2 ? 'yellow' : 'none',
-                }}
-              ></div>
-              <span className="icon-text">{getIconValue(iconData.name).value}</span>
-            </div>
-          ))}
-        </div>
         <div className="camera-view">
           <div className="camera-view-text">{`Drone ${droneNumber}`}</div>
           <video className="video" src={video} autoPlay muted />
+        </div>
+        <div className="icon-row">
+          {icons.slice(0, 4).map((iconData, index) => (
+            <div key={index} className="icon-wrapper">
+              <div
+                className="icon"
+                title={`${iconData.name}: ${latestData[iconData.name] || 0}`}
+                style={{
+                  backgroundImage: `url(${
+                    iconData.getIcon
+                      ? iconData.getIcon(latestData[iconData.name])
+                      : iconData.icon
+                  })`,
+                  border: getIconValue(iconData.name).highlight===1 ? '2px solid red' : 'none',
+                  backgroundColor: getIconValue(iconData.name).highlight === 2 ? 'yellow' : 'none',
+                }}
+              ></div>
+              <span className="icon-text">{getIconValue(iconData.name).value}</span>
+            </div>
+          ))}
+        </div>
+        <div className="icon-row">
+          {icons.slice(4).map((iconData, index) => (
+            <div key={index} className="icon-wrapper">
+              <div
+                className="icon"
+                title={`${iconData.name}: ${latestData[iconData.name] || 0}`}
+                style={{
+                  backgroundImage: `url(${
+                    iconData.getIcon
+                      ? iconData.getIcon(latestData[iconData.name])
+                      : iconData.icon
+                  })`,
+                  border: getIconValue(iconData.name).highlight===1 ? '2px solid red' : 'none',
+                  backgroundColor: getIconValue(iconData.name).highlight === 2 ? 'yellow' : 'none',
+                }}
+              ></div>
+              <span className="icon-text">{getIconValue(iconData.name).value}</span>
+            </div>
+          ))}
         </div>
       </div>
     );
