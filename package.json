@@ -1,6 +1,6 @@
 {
-  "homepage": "https://zekun-wu.github.io/drone_interface/",
-  "name": "drone_interface_demo2",
+  "homepage": "https://zekun-wu.github.io/drone_interface_demo1/",
+  "name": "drone_interface_demo1",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
